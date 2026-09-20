@@ -26,7 +26,7 @@ class CertificateGenerator:
         if not consensus and not errors:
             raise ValueError("non-consensus certificates require at least one error")
         if errors is not None:
-            normalized_errors = errors
+            normalized_errors = list(errors)
 
         certificate: dict[str, str | int | bool | list[str]] = {
             "contract_id": contract_id,
