@@ -22,6 +22,9 @@ class CertificateGenerator:
         errors: list[str] | None = None,
     ) -> dict[str, str | int | bool | list[str]]:
         """Build a certificate payload."""
+        if not consensus and not errors:
+            raise ValueError("non-consensus certificates require at least one error")
+
         certificate: dict[str, str | int | bool | list[str]] = {
             "contract_id": contract_id,
             "contract_version": contract_version,
@@ -29,7 +32,7 @@ class CertificateGenerator:
             "score": score if consensus else 0,
         }
         if not consensus:
-            certificate["errors"] = [] if errors is None else errors
+            certificate["errors"] = errors
         return certificate
 
     def save_certificate(
