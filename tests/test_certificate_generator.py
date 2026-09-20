@@ -107,5 +107,7 @@ def test_cli_run_rejects_invalid_arguments():
     """
     Testuje ścieżkę błędu CLI dla nieprawidłowych argumentów.
     """
-    with pytest.raises(SystemExit, match="usage: python -m aura_conformance run"):
+    with pytest.raises(SystemExit) as exc_info:
         main([])
+
+    assert str(exc_info.value) == "usage: python -m aura_conformance run"

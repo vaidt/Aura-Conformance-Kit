@@ -22,8 +22,11 @@ class CertificateGenerator:
         errors: list[str] | None = None,
     ) -> dict[str, str | int | bool | list[str]]:
         """Build a certificate payload."""
+        normalized_errors: list[str] | None = None
         if not consensus and not errors:
             raise ValueError("non-consensus certificates require at least one error")
+        if errors is not None:
+            normalized_errors = errors
 
         certificate: dict[str, str | int | bool | list[str]] = {
             "contract_id": contract_id,
@@ -32,7 +35,8 @@ class CertificateGenerator:
             "score": score if consensus else 0,
         }
         if not consensus:
-            certificate["errors"] = errors
+            assert normalized_errors is not None
+            certificate["errors"] = normalized_errors
         return certificate
 
     def save_certificate(
