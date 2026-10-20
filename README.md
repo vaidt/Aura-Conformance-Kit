@@ -14,7 +14,7 @@ The kit can provide bounded engineering evidence. It does not independently gran
 
 The text below is preserved from the previous README. Its description of project stage is not independent evidence of the current source tree or implementation status.
 
-# Aura Conformance Kit
+### Previous README title (normalized to avoid a duplicate H1)
 
 Aura Conformance Kit to zestaw narzędzi i materiałów pomocniczych służących do weryfikacji zgodności implementacji z wymaganiami Aura.
 
